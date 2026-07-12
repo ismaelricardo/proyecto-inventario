@@ -145,7 +145,7 @@ with pestana3:
     
     if lista:
         elegido = st.selectbox("¿Cuál producto quieres cambiar?", lista)
-        numero = int(elegido.split(" - ")[0])
+        numero = int(elegido.split(" - ")[0].strip().split()[-1])
         
         nuevo_precio = st.number_input("💲 Nuevo precio", min_value=0.0, key="np")
         nuevo_stock = st.number_input("📊 Nueva cantidad", min_value=0, step=1, key="nc")
@@ -166,7 +166,7 @@ with pestana4:
     
     if lista:
         elegido = st.selectbox("¿Cuál producto quieres borrar?", lista, key="borrar")
-        numero = int(elegido.split(" - ")[0])
+        numero = int(elegido.split(" - ")[0].strip().split()[-1])
         
         if st.button("❌ Eliminar"):
             ejecutar("DELETE FROM productos WHERE id = :id;", {"id": numero})
